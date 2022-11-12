@@ -36,14 +36,14 @@ function Register({ navigation }) {
         let passLengthError;
 
         if (error.message === errors.EMAIL_IN_USED) {
-            emailExistError = "Usuario   ya existe";
+            emailExistError = "Usuario ya existe";
         }
 
         if (error.message === errors.EMAIL_MAX) {
             passLengthError = "Password debe ser de un minimo de 6 characters";
         }
         if (emailExistError === undefined && passLengthError === undefined) {
-            networkError = "Network Error Try again";
+            networkError = "Network Error Intente de nuevo";
         }
         setNetworkError({
             passLengthError,
@@ -53,14 +53,12 @@ function Register({ navigation }) {
     };
 
     const handleCreateUser = () => {
-        console.log("creando " +  validateInputs() )
         if (validateInputs()) {
-            console.log("paso")
             console.log(mailContact)
             setError({});
             createUserWithEmailAndPassword(auth, mailContact)
                 .then(({ user }) => {
-                    console.log("User created!");
+                    console.log("Usuario creado!");
                     const userData = JSON.stringify({
                         mailContact: user.mailContact,
                         accessToken: user.stsTokenManager.accessToken,
@@ -110,36 +108,36 @@ function Register({ navigation }) {
         
 
         if(role == "none")
-            {vRole = "Error in role selection";
+            {vRole = "Error en la seleccion del rol";
             correctInfo = false;}
         
         if(!name.match(validRegexFullName))
-            {vName = "Error in name field";
+            {vName = "Error en el ingrso del 'Nombre'";
             correctInfo = false;}
 
         if(!(lName.match(validRegexFullName)) )
-            {vLName = "Error in last name field";
+            {vLName = "Error en el ingreso del 'Apellido'";
             correctInfo = false;}
 
 
         if(!(unit.match(validRegexUnit)))
-            {vUnit = "Error in unit field";
+            {vUnit = "Error en el ingreso de la 'Unidad'";
             correctInfo = false;}
 
         if(!(numContact.match(validRegexNumContact))){
-            vNumContact = "Error in contact number field";
+            vNumContact = "Error en el ingreso del 'Numero de Contacto'";
             correctInfo = false;}
 
         if (!(mailContact.match(validRegexMail)) )
-            {vMail = "Contact Mail Invalid";
+            {vMail = "Error en el ingreso del 'Mail'";
             correctInfo = false;}
 
         if(!(typeID.match(validRegexTypeID)))
-            {vIDType = "Error in ID Type field";
+            {vIDType = "Error en el ingreso del 'Tipo de Documento'";
             correctInfo = false;}
         
             if(!(numID.match(validRegexIDNum))) 
-            {vIDNum = "Error in ID number field";
+            {vIDNum = "Error en el ingreso del 'Numero de Documento'";
             correctInfo = false;} 
 
         if (correctInfo == false) {
@@ -163,21 +161,21 @@ function Register({ navigation }) {
                  <View >
                     <View style={{flexDirection: "row", marginHorizontal: 20}}>
                     <TouchableOpacity
-                            onPress={() => changeRole("Administrator")}
+                            onPress={() => changeRole("Administrador")}
                             style={styles.rolesButton} >
                             <Text style={styles.roleText}>Administrator</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => changeRole("Owner")} style={styles.rolesButton}>
+                    <TouchableOpacity onPress={() => changeRole("Dueño")} style={styles.rolesButton}>
                             <Text style={styles.roleText}>Owner</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                            onPress={() => changeRole("Security")}
+                            onPress={() => changeRole("Seguridad")}
                             style={styles.rolesButton}>
                             <Text style={styles.roleText}>Security</Text>
                     </TouchableOpacity>
                     </View>
                     <View style={{alignItems: "center"}}>
-                        <Text style={styles.text}>Selected Role: {role}</Text>                    
+                        <Text style={styles.text}>Rol Seleccionado: {role}</Text>                    
                         <View>
                         <Text  style={styles.error}>{error.vRole}</Text>
                         </View>
@@ -188,7 +186,7 @@ function Register({ navigation }) {
                 <View style={styles.textInputHolders}>
                     <View>
 
-                    <Text style={styles.text}>Name</Text>
+                    <Text style={styles.text}>Nombre</Text>
                         <View style={styles.component}>
                             <TextInput 
                                 value = {name} 
@@ -204,7 +202,7 @@ function Register({ navigation }) {
                 </View>
                 <View style={styles.textInputHolders}>
                     <View>
-                    <Text style={styles.text}>Last Name</Text>
+                    <Text style={styles.text}>Apellido</Text>
                         <View style={styles.component}>
                             <TextInput 
                                 value = {lName} 
@@ -220,7 +218,7 @@ function Register({ navigation }) {
                 </View>
                 <View style={styles.textInputHolders}>
                     <View>
-                    <Text style={styles.text}>Unit</Text>
+                    <Text style={styles.text}>Unidad</Text>
                         <View style={styles.component}>
                             <TextInput 
                                 value = {unit} 
@@ -236,7 +234,7 @@ function Register({ navigation }) {
                 </View>
                 <View style={styles.textInputHolders}>
                     <View>
-                    <Text style={styles.text}>Contact Phone Number</Text>
+                    <Text style={styles.text}>Numero de Contacto </Text>
                         <View style={styles.component}>
                             <TextInput 
                                 value = {numContact} 
@@ -268,7 +266,7 @@ function Register({ navigation }) {
                 </View>
                 <View style={styles.textInputHolders}>
                     <View>
-                    <Text style={styles.text}>ID Type</Text>
+                    <Text style={styles.text}>Tipo de Documento</Text>
                         <View style={styles.component}>
                             <TextInput 
                                 value = {typeID} 
@@ -284,7 +282,7 @@ function Register({ navigation }) {
                 </View>
                 <View style={styles.textInputHolders}>
                     <View>
-                    <Text style={styles.text}>ID Number</Text>
+                    <Text style={styles.text}>Numero de Documento</Text>
                         <View style={styles.component}>
                             <TextInput 
                                 value = {numID} 
@@ -303,7 +301,7 @@ function Register({ navigation }) {
                     onPress={handleCreateUser}
                     style={styles.button}
                 >
-                    <Text style={styles.buttonsText}>Register</Text>
+                    <Text style={styles.buttonsText}>Registrar</Text>
                 </TouchableOpacity>
         </View>
         
