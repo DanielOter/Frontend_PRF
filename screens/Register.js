@@ -163,15 +163,15 @@ function Register({ navigation }) {
                     <TouchableOpacity
                             onPress={() => changeRole("Administrador")}
                             style={styles.rolesButton} >
-                            <Text style={styles.roleText}>Administrator</Text>
+                            <Text style={styles.roleText}>Administrador</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => changeRole("Dueño")} style={styles.rolesButton}>
-                            <Text style={styles.roleText}>Owner</Text>
+                            <Text style={styles.roleText}>Dueño</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                             onPress={() => changeRole("Seguridad")}
                             style={styles.rolesButton}>
-                            <Text style={styles.roleText}>Security</Text>
+                            <Text style={styles.roleText}>Seguridad</Text>
                     </TouchableOpacity>
                     </View>
                     <View style={{alignItems: "center"}}>
