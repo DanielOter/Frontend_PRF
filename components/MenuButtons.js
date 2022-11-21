@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { removeData } from "../helpers/store";
 import keys from "../constants/keys";
 import { auth } from "../libs/auth";
 import { signOut } from "firebase/auth";
 import { AppContext } from "../context/context";
+import MapScreen from "./user/MapScreen";
 
 const MenuButtons = ({ navigation }) => {
     const { setLoading } = useContext(AppContext);
@@ -52,30 +53,37 @@ const MenuButtons = ({ navigation }) => {
         }
     };
 
+
+    
     return (
-        <View style={styles.container}>
-            {items.map((items, index) => (
-                <View key={index} style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        onPress={() => accion(items.nav)}
-                        style={[
-                            styles.button,
-                            {
-                                backgroundColor: items.customColor
-                                    ? items.customColor
-                                    : "#0470dc",
-                            },
-                        ]}
-                    >
-                        <FontAwesome
-                            name={items.logo}
-                            size={23}
-                            color={"#efefef"}
-                        />
-                    </TouchableOpacity>
-                    <Text style={styles.menuText}>{items.title}</Text>
-                </View>
-            ))}
+        <View>
+            <View style={styles.container}>
+                {items.map((items, index) => (
+                    <View key={index} style={styles.buttonContainer}>
+                        <TouchableOpacity
+                            onPress={() => accion(items.nav)}
+                            style={[
+                                styles.button,
+                                {
+                                    backgroundColor: items.customColor
+                                        ? items.customColor
+                                        : "#0470dc",
+                                },
+                            ]}
+                        >
+                            <FontAwesome
+                                name={items.logo}
+                                size={23}
+                                color={"#efefef"}
+                            />
+                        </TouchableOpacity>
+                        <Text style={styles.menuText}>{items.title}</Text>
+                    </View>
+                ))}
+            </View>
+            <View >
+                <MapScreen />
+            </View>
         </View>
     );
 };
