@@ -4,7 +4,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { removeData } from "../helpers/store";
 import keys from "../constants/keys";
 import { auth } from "../libs/auth";
-import { signOut } from "firebase/auth";
+import { signOut, updateCurrentUser } from "firebase/auth";
 import { AppContext } from "../context/context";
 import MapScreen from "./user/MapScreen";
 
@@ -81,9 +81,14 @@ const MenuButtons = ({ navigation }) => {
                     </View>
                 ))}
             </View>
+            {true ? (        
             <View >
                 <MapScreen />
             </View>
+            ):(
+                <View/>
+            )}
+
         </View>
     );
 };
