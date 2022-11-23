@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { removeData } from "../helpers/store";
@@ -6,31 +6,21 @@ import keys from "../constants/keys";
 import { auth } from "../libs/auth";
 import { signOut } from "firebase/auth";
 import { AppContext } from "../context/context";
+import menuOptions from "../constants/menuOptions";
 
 const MenuButtons = ({ navigation }) => {
-    const { setLoading } = useContext(AppContext);
+    const { setLoading, currentUser } = useContext(AppContext);
+    console.log("🚀 ~ file: MenuButtons.js ~ line 31 ~ MenuButtons ~ currentUser", currentUser)
+    const [menu, setMenu] = useState([]);
 
-    const items = [
-        {
-            id: 1,
-            logo: "comments",
-            title: "Chat Room",
-            nav: "Room",
-            customColor: "#ff751f",
-        },
-        {
-            id: 2,
-            logo: "child",
-            title: "Friends",
-            nav: "Friends",
-        },
-        {
-            id: 3,
-            logo: "sign-out",
-            title: "LogOut",
-            nav: "Login",
-        },
-    ];
+    useEffect(() => {
+        if (currentUser) {
+            const role = currentUser.role;
+            if (role === "Administrador") setMenu(menuOptions.Administrador);
+            if (role === "Seguridad") setMenu(menuOptions.Seguridad);
+            if (role === "Propietario") setMenu(menuOptions.Propietario);
+        }
+    }, [menu]);
 
     const handleSignOut = () => {
         console.log("SignOut");
@@ -45,7 +35,7 @@ const MenuButtons = ({ navigation }) => {
     };
 
     const accion = (nav) => {
-        if (nav === "Login") {
+        if (nav === "LogOut") {
             handleSignOut();
         } else {
             navigation.navigate(nav);
@@ -53,29 +43,31 @@ const MenuButtons = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
-            {items.map((items, index) => (
-                <View key={index} style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        onPress={() => accion(items.nav)}
-                        style={[
-                            styles.button,
-                            {
-                                backgroundColor: items.customColor
-                                    ? items.customColor
-                                    : "#0470dc",
-                            },
-                        ]}
-                    >
-                        <FontAwesome
-                            name={items.logo}
-                            size={23}
-                            color={"#efefef"}
-                        />
-                    </TouchableOpacity>
-                    <Text style={styles.menuText}>{items.title}</Text>
-                </View>
-            ))}
+        <View>
+            <View style={styles.container}>
+                {menu.map((items, index) => (
+                    <View key={index} style={styles.buttonContainer}>
+                        <TouchableOpacity
+                            onPress={() => accion(items.nav)}
+                            style={[
+                                styles.button,
+                                {
+                                    backgroundColor: items.customColor
+                                        ? items.customColor
+                                        : "#0470dc",
+                                },
+                            ]}
+                        >
+                            <FontAwesome
+                                name={items.logo}
+                                size={23}
+                                color={"#efefef"}
+                            />
+                        </TouchableOpacity>
+                        <Text style={styles.menuText}>{items.title}</Text>
+                    </View>
+                ))}
+            </View>
         </View>
     );
 };
@@ -108,11 +100,5 @@ const styles = StyleSheet.create({
         fontSize: 12,
         paddingTop: 10,
         fontWeight: "600",
-    },
-    input: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
     },
 });

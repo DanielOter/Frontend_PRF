@@ -1,8 +1,7 @@
 import { LOCAL_URL } from "@env";
 
 const createUrl = (path) => {
-    const enviormentUrl = LOCAL_URL;
-    return enviormentUrl.concat(path);
+    return LOCAL_URL.concat(path);
 };
 
 const createHeader = (token) => {
