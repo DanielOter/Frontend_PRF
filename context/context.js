@@ -15,6 +15,8 @@ export const AppContextProvider = ({ children }) => {
                 const userData = JSON.parse(await getData(keys.USER));
                 if (userData && isUp) {
                     setCurrentUser(userData);
+                } else {
+                    setCurrentUser(undefined);
                 }
                 setLoading(false);
             };
