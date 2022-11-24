@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useContext, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import errors from "../../constants/errors";
 import fireBaseErrors from "../../constants/fireBaseErrors";
 import regex from "../../constants/regex";
@@ -113,73 +113,42 @@ export const UserForm = ({ getData, validateInputs }) => {
 
     return (
         <View>
-            <CustomInput
-                value={unit}
-                setValue={setUnit}
-                holder={"Ingresar Unidad"}
-                text={"Unidad"}
-                error={error.vUnit}
-            />
-            <CustomInput
-                value={numContact}
-                setValue={setNumContact}
-                holder={"Ingresar Numero de Contacto"}
-                text={"Numero de Contacto"}
-                error={error.vNumContact}
-            />
-            <CustomInput
-                value={mailContact}
-                setValue={setMailContact}
-                holder={"Ingresar Mail"}
-                text={"Mail"}
-                error={error.vMail}
-            />
-            <CustomDropdown
-                data={ROLES}
-                holder={"Seleccione un rol"}
-                setValue={setRole}
-                value={role}
-                error={error.vRole}
-            />
-            {/* <View>
-                <View
-                    style={{
-                        flexDirection: "row",
-                        marginHorizontal: 20,
-                    }}
-                >
-                    <TouchableOpacity
-                        onPress={() => setRole("Administrador")}
-                        style={styles.rolesButton}
-                    >
-                        <Text style={styles.roleText}>Administrador</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => setRole("Dueño")}
-                        style={styles.rolesButton}
-                    >
-                        <Text style={styles.roleText}>Dueño</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => setRole("Seguridad")}
-                        style={styles.rolesButton}
-                    >
-                        <Text style={styles.roleText}>Seguridad</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={{ alignItems: "center" }}>
-                    <Text style={styles.text}>Rol Seleccionado: {role}</Text>
-                    <View>
-                        <Text style={styles.error}>{error.vRole}</Text>
+            <View>
+                <CustomInput
+                    value={unit}
+                    setValue={setUnit}
+                    holder={"Ingresar Unidad"}
+                    text={"Unidad"}
+                    error={error.vUnit}
+                />
+                <CustomInput
+                    value={numContact}
+                    setValue={setNumContact}
+                    holder={"Ingresar Numero de Contacto"}
+                    text={"Numero de Contacto"}
+                    error={error.vNumContact}
+                />
+                <CustomInput
+                    value={mailContact}
+                    setValue={setMailContact}
+                    holder={"Ingresar Mail"}
+                    text={"Mail"}
+                    error={error.vMail}
+                />
+                <CustomDropdown
+                    data={ROLES}
+                    holder={"Seleccione un rol"}
+                    setValue={setRole}
+                    value={role}
+                    error={error.vRole}
+                />
+                {networkError && (
+                    <View style={{ alignItems: "center" }}>
+                        <Text style={styles.error}>{networkError}</Text>
                     </View>
-                </View>
-            </View> */}
-            {networkError && (
-                <View style={{ alignItems: "center" }}>
-                    <Text style={styles.error}>{networkError}</Text>
-                </View>
-            )}
-            <CustomButton onPress={handleCreateUser} text={"Registrar"} />
+                )}
+                <CustomButton onPress={handleCreateUser} text={"Registrar"} />
+            </View>
         </View>
     );
 };
@@ -188,5 +157,9 @@ const styles = StyleSheet.create({
     error: {
         color: "#ff0000",
         fontSize: 10,
+    },
+    container: {
+        justifyContent: "center",
+        alignItems: "center",
     },
 });

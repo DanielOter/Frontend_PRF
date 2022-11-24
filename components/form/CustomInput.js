@@ -25,7 +25,6 @@ export const CustomInput = ({ value, setValue, holder, text, error }) => {
 const styles = StyleSheet.create({
     text: {
         marginTop: 5,
-        paddingLeft: 15,
         color: "#000000",
         fontSize: 15,
     },

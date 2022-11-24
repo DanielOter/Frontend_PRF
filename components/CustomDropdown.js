@@ -8,8 +8,7 @@ const CustomDropdown = ({ data, holder, setValue, value, error }) => {
 
     return (
         <View>
-            <View style={styles.container}>
-                <StatusBar barStyle="dark-content" />
+            <View>
                 <View style={styles.interContainer}>
                     <Dropdown
                         style={[
@@ -47,14 +46,7 @@ const CustomDropdown = ({ data, holder, setValue, value, error }) => {
 export default CustomDropdown;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 16,
-        justifyContent: "center",
-        alignContent: "center",
-    },
     interContainer: {
-        // padding: 20,
         borderRadius: 15,
     },
     dropdown: {

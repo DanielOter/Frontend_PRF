@@ -1,16 +1,9 @@
 import React, { useContext, useState } from "react";
-import {
-    Button,
-    Image,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { AppContext } from "../../context/context";
-import { createRequest, createUrl } from "../../helpers/request";
 import { CustomButton } from "../CustomButton";
+import { createGuestService } from "../../services/guestService";
 
 export const GuestForm = ({ getData, validateInputs }) => {
     const { currentUser } = useContext(AppContext);
@@ -24,13 +17,6 @@ export const GuestForm = ({ getData, validateInputs }) => {
             aspect: [4, 3],
             quality: 1,
         });
-        const base64 = image.uri.split(",")[1];
-        const imageBase = `data:image/jpeg;base64,${base64}`;
-        console.log(
-            "🚀 ~ file: GuestForm.js ~ line 24 ~ uploadImage ~ image",
-            image
-        );
-
         if (!image.cancelled) {
             setImage({ uri: image.uri, type: image.type });
         }
@@ -38,58 +24,21 @@ export const GuestForm = ({ getData, validateInputs }) => {
     const sendForm = async () => {
         if (validateInputs() && image) {
             const data = getData();
-            const base64 = image.uri.split(",")[1];
-            const body = {
-                guest: {
-                    name: data.name,
-                    lastName: data.lastName,
-                    idType: data.docType,
-                    idNum: data.docNum,
-                    host: currentUser.email,
-                },
-                // file: `data:image/jpeg;base64,${base64}`,
+            const guest = {
+                name: data.name,
+                lastName: data.lastName,
+                idType: data.docType,
+                idNum: data.docNum,
+                host: currentUser.email,
             };
-            // const body = new FormData();
 
-            // const file = {
-            //     uri: image.uri,
-            //     type: "image/jpeg",
-            //     name: data.name + "-" + data.docNum + ".jpg",
-            // };
-            // body.append("file", file);
-            // body.append("guest[name]", data.name);
-            // body.append("guest[lastName]", data.lastName);
-            // body.append("guest[idType]", data.docType);
-            // body.append("guest[idNum]", data.docNum);
-            // body.append("guest[host]", currentUser.mail);
-
-            const url = createUrl("guest/create");
-
-            const request = createRequest(
-                currentUser.accessToken,
-                "POST",
-                body
+            const resCreation = await createGuestService(
+                guest,
+                currentUser.accessToken
             );
-            // const request = {
-            //     method: "post",
-            //     headers: {
-            //         "content-type": "multipart/form-data;",
-            //         Authorization: `Bearer ${currentUser.accessToken}`,
-            //     },
-            //     body: JSON.stringify(body),
-            // };
-            const res = await fetch(url, request)
-                .then((res) => res.json())
-                .then((json) => {
-                    return json;
-                })
-                .catch((err) => {
-                    console.log(err);
-                    throw err;
-                });
             console.log(
-                "🚀 ~ file: GuestForm.js ~ line 74 ~ sendForm ~ res",
-                res
+                "🚀 ~ file: GuestForm.js ~ line 42 ~ sendForm ~ resCreation",
+                resCreation
             );
         } else {
             setGError(
@@ -99,7 +48,7 @@ export const GuestForm = ({ getData, validateInputs }) => {
     };
     return (
         <View>
-            <View style={styles.container}>
+            <View>
                 <CustomButton
                     onPress={uploadImage}
                     text={"Seleccione foto del documento"}
@@ -118,9 +67,6 @@ export const GuestForm = ({ getData, validateInputs }) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: "center",
-    },
     buttonsText: {
         color: "#ffffff",
         fontSize: 20,

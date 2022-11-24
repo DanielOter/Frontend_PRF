@@ -27,7 +27,6 @@ const logInService = async (email, token, load) => {
                     accessToken: token,
                     role: json.role,
                 };
-                console.log("🚀 ~ file: UserService.js ~ line 30 ~ .then ~ userData", userData)
                 console.log("Signed in!");
                 storeData(keys.USER, JSON.stringify(userData));
                 load();

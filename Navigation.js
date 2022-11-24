@@ -7,6 +7,8 @@ import { AppContext } from "./context/context";
 import { CreateGuest } from "./screens/CreateGuest";
 import { AddGuestReg } from "./screens/AddGuestReg";
 import { RegisterUser } from "./screens/RegisterUser";
+import MapScreen from "./screens/MapScreen";
+import { AddNotification } from "./screens/AddNotification";
 
 function Navigation() {
     const Stack = createStackNavigator();
@@ -23,17 +25,22 @@ function Navigation() {
                             options={{ headerShown: false }}
                         />
                         <Stack.Screen
-                            name="CreateGuest"
+                            name="Agregar Invitado"
                             component={CreateGuest}
                         />
                         <Stack.Screen
-                            name="AddGuestReg"
+                            name="Agregar Registro"
                             component={AddGuestReg}
                         />
                         <Stack.Screen
-                            name="Register"
+                            name="Administra Usuarios"
                             component={RegisterUser}
                         />
+                        <Stack.Screen
+                            name="Cargar Notificaciones"
+                            component={AddNotification}
+                        />
+                        <Stack.Screen name="Mapa" component={MapScreen} />
                     </Stack.Group>
                 ) : (
                     <Stack.Group>

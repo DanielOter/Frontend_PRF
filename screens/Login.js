@@ -5,7 +5,7 @@ import errors from "../constants/errors";
 import fireErrors from "../constants/fireBaseErrors";
 import { auth } from "../libs/auth";
 import { AppContext } from "../context/context";
-import { logInService } from "../services/UserService";
+import { logInService } from "../services/userService";
 import { CustomInput } from "../components/form/CustomInput";
 import { CustomButton } from "../components/CustomButton";
 

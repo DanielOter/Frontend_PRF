@@ -10,12 +10,12 @@ import menuOptions from "../constants/menuOptions";
 
 const MenuButtons = ({ navigation }) => {
     const { setLoading, currentUser } = useContext(AppContext);
-    console.log("🚀 ~ file: MenuButtons.js ~ line 31 ~ MenuButtons ~ currentUser", currentUser)
     const [menu, setMenu] = useState([]);
 
     useEffect(() => {
         if (currentUser) {
-            const role = currentUser.role;
+            // const role = currentUser.role;
+            const role = "Propietario"
             if (role === "Administrador") setMenu(menuOptions.Administrador);
             if (role === "Seguridad") setMenu(menuOptions.Seguridad);
             if (role === "Propietario") setMenu(menuOptions.Propietario);

@@ -4,21 +4,22 @@ export default {
             logo: "child",
             title: "Boton de Panico",
             nav: "AddGuestReg",
+            customColor: "#ff0000"
         },
         {
             logo: "comments",
             title: "Agregar invitado",
-            nav: "CreateGuest",
+            nav: "Agregar Invitado",
         },
         {
             logo: "child",
             title: "Agregar registro invitado",
-            nav: "AddGuestReg",
+            nav: "Agregar Registro",
         },
         {
             logo: "child",
             title: "Ver mapa",
-            nav: "AddGuestReg",
+            nav: "Mapa",
         },
         {
             logo: "sign-out",
@@ -47,12 +48,12 @@ export default {
         {
             logo: "comments",
             title: "Administrar Usuarios",
-            nav: "Register",
+            nav: "Administra Usuarios",
         },
         {
             logo: "child",
             title: "Cargar notificación",
-            nav: "CreateGuest",
+            nav: "Cargar Notificaciones",
         },
         {
             logo: "sign-out",
