@@ -3,62 +3,80 @@ export default {
         {
             logo: "child",
             title: "Boton de Panico",
-            nav: "AddGuestReg",
-            customColor: "#ff0000"
+            nav: "Mapa",
+            customColor: "#ff0000",
+            device: "Android"
         },
         {
-            logo: "comments",
-            title: "Agregar invitado",
-            nav: "Agregar Invitado",
-        },
-        {
-            logo: "child",
-            title: "Agregar registro invitado",
-            nav: "Agregar Registro",
-        },
-        {
-            logo: "child",
+            logo: "globe",
             title: "Ver mapa",
             nav: "Mapa",
+            device: "Android"
+        },
+        {
+            logo: "address-book",
+            title: "Agregar invitado",
+            nav: "Agregar Invitado",
+            device: "ALL"
+
+        },
+        {
+            logo: "group",
+            title: "Agregar registro invitado",
+            nav: "Agregar Registro",
+            device: "ALL"
         },
         {
             logo: "sign-out",
             title: "Desconectar",
             nav: "LogOut",
+            device: "ALL"
+        },
+        {
+            logo: "qrcode",
+            title: "Lector QR",
+            nav: "Lector QR",
+            device: "Android"
         },
     ],
     Seguridad: [
         {
-            logo: "comments",
+            logo: "qrcode",
             title: "Lector QR",
-            nav: "Register",
+            nav: "Lector QR",
+            device: "Android"
         },
         {
-            logo: "comments",
+            logo: "address-book",
             title: "Agregar invitado",
             nav: "CreateGuest",
+            device: "ALL"
         },
         {
             logo: "sign-out",
             title: "Desconectar",
             nav: "LogOut",
+            device: "ALL"
         },
     ],
     Administrador: [
         {
-            logo: "comments",
+            logo: "users",
             title: "Administrar Usuarios",
             nav: "Administra Usuarios",
+            device: "ALL"
         },
         {
-            logo: "child",
+            logo: "bell",
             title: "Cargar notificación",
             nav: "Cargar Notificaciones",
+            device: "ALL"
         },
         {
             logo: "sign-out",
             title: "Desconectar",
             nav: "LogOut",
+            device: "ALL"
         },
     ],
 };

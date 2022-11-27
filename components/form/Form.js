@@ -7,17 +7,12 @@ import { UserForm } from "./UserForm";
 import Header from "../Header";
 import { CustomInput } from "./CustomInput";
 
-export const Form = ({ tForm }) => {
-    const [formFor, setformFor] = useState("");
+export const Form = ({ tForm, navigation }) => {
     const [error, setError] = useState({});
     const [name, setName] = useState("Pedro");
     const [lastName, setLName] = useState("Infante");
     const [docType, setDocType] = useState("dni");
     const [docNum, setDocNum] = useState("123456789");
-
-    useEffect(() => {
-        if (tForm) setformFor(tForm);
-    }, []);
 
     const getData = () => {
         const data = {
@@ -68,10 +63,10 @@ export const Form = ({ tForm }) => {
     };
 
     return (
-        <View>
+        <View >
             <ScrollView>
+                <Header header={tForm + " form"}></Header>
                 <View style={styles.container}>
-                    <Header header={formFor + " form"}></Header>
                     <View>
                         <CustomInput
                             value={name}
@@ -101,11 +96,12 @@ export const Form = ({ tForm }) => {
                             text={"Numero de Documento"}
                             error={error.vIDNum}
                         />
-                        {formFor === "User" ? (
+                        {tForm === "User" ? (
                             <View>
                                 <UserForm
                                     getData={getData}
                                     validateInputs={validateInputs}
+                                    navigation={navigation}
                                 />
                             </View>
                         ) : (
@@ -113,6 +109,7 @@ export const Form = ({ tForm }) => {
                                 <GuestForm
                                     getData={getData}
                                     validateInputs={validateInputs}
+                                    nav={navigation}
                                 />
                             </View>
                         )}
@@ -127,5 +124,7 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#fff",
+        flex: 1,
     },
 });

@@ -1,9 +1,8 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 
-const CustomDropdown = ({ data, holder, setValue, value, error }) => {
+const CustomDropdown = ({ data, holder, setValue, item, error }) => {
     const [isFocus, setIsFocus] = useState(false);
 
     return (
@@ -26,11 +25,11 @@ const CustomDropdown = ({ data, holder, setValue, value, error }) => {
                         valueField="value"
                         placeholder={!isFocus ? "Seleccione " + holder : "..."}
                         searchPlaceholder="Buscar..."
-                        value={value}
+                        value={item}
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
                         onChange={(item) => {
-                            setValue(item.value);
+                            setValue(item);
                             setIsFocus(false);
                         }}
                     />
@@ -47,6 +46,7 @@ export default CustomDropdown;
 
 const styles = StyleSheet.create({
     interContainer: {
+        paddingTop: 15,
         borderRadius: 15,
     },
     dropdown: {

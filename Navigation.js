@@ -9,6 +9,7 @@ import { AddGuestReg } from "./screens/AddGuestReg";
 import { RegisterUser } from "./screens/RegisterUser";
 import MapScreen from "./screens/MapScreen";
 import { AddNotification } from "./screens/AddNotification";
+import { QrScanner } from "./screens/QrScanner";
 
 function Navigation() {
     const Stack = createStackNavigator();
@@ -39,6 +40,10 @@ function Navigation() {
                         <Stack.Screen
                             name="Cargar Notificaciones"
                             component={AddNotification}
+                        />
+                        <Stack.Screen
+                            name="Lector QR"
+                            component={QrScanner}
                         />
                         <Stack.Screen name="Mapa" component={MapScreen} />
                     </Stack.Group>

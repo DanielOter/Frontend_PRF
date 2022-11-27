@@ -7,9 +7,16 @@ const addUserService = async (data, token) => {
         const body = { newUser: data };
         const request = createRequest(token, "POST", body);
         const url = createUrl("user/create");
-        const response = await fetch(url, request);
-        const result = await response.json();
-        return result;
+        const response = await fetch(url, request)
+            .then((response) => response.json())
+            .then((res) => {
+                return res;
+            })
+            .catch((error) => {
+                console.log(error);
+                throw error;
+            });
+        return response;
     } catch (error) {
         throw error;
     }
@@ -19,23 +26,24 @@ const logInService = async (email, token, load) => {
     try {
         const request = createRequest(token, "GET");
         const url = createUrl("user/email/" + email);
-        await fetch(url, request)
+        const response = await fetch(url, request)
             .then((response) => response.json())
             .then((json) => {
                 const userData = {
                     email: email,
-                    accessToken: token,
+                    token: token,
                     role: json.role,
                 };
                 console.log("Signed in!");
                 storeData(keys.USER, JSON.stringify(userData));
-                load();
+                load(true);
                 return json;
             })
             .catch((error) => {
                 console.log(error);
                 throw error;
             });
+        return response;
     } catch (error) {
         throw error;
     }

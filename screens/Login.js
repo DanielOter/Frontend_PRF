@@ -56,7 +56,7 @@ function Login() {
         if (validateFormError()) {
             setError({});
             signInWithEmailAndPassword(auth, email, password)
-                .then(async ({ user }) => {
+                .then(({ user }) => {
                     logInService(user.email, user.stsTokenManager, setLoading);
                     setNetworkError({});
                 })
@@ -64,7 +64,6 @@ function Login() {
                     validateNetworkError(error);
                     console.log(error);
                 });
-            setLoading(true);
         }
     };
 
@@ -99,8 +98,9 @@ export default Login;
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: "#fff",
         alignItems: "center",
-        justifyContent: "center",
+        flex: 1,
     },
     error: {
         color: "#ff0000",
