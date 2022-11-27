@@ -7,6 +7,7 @@ import { auth } from "../libs/auth";
 import { signOut } from "firebase/auth";
 import { AppContext } from "../context/context";
 import menuOptions from "../constants/menuOptions";
+import * as Device from "expo-device";
 
 const MenuButtons = ({ navigation }) => {
     const { setLoading, currentUser } = useContext(AppContext);
@@ -15,7 +16,7 @@ const MenuButtons = ({ navigation }) => {
     useEffect(() => {
         if (currentUser) {
             // const role = currentUser.role;
-            const role = "Propietario"
+            const role = "Propietario";
             if (role === "Administrador") setMenu(menuOptions.Administrador);
             if (role === "Seguridad") setMenu(menuOptions.Seguridad);
             if (role === "Propietario") setMenu(menuOptions.Propietario);
@@ -34,6 +35,11 @@ const MenuButtons = ({ navigation }) => {
             });
     };
 
+    const device = Device.osName;
+    const showMenu = (type) => {
+        return type === "ALL" || type === device;
+    };
+
     const accion = (nav) => {
         if (nav === "LogOut") {
             handleSignOut();
@@ -45,28 +51,33 @@ const MenuButtons = ({ navigation }) => {
     return (
         <View>
             <View style={styles.container}>
-                {menu.map((items, index) => (
-                    <View key={index} style={styles.buttonContainer}>
-                        <TouchableOpacity
-                            onPress={() => accion(items.nav)}
-                            style={[
-                                styles.button,
-                                {
-                                    backgroundColor: items.customColor
-                                        ? items.customColor
-                                        : "#0470dc",
-                                },
-                            ]}
-                        >
-                            <FontAwesome
-                                name={items.logo}
-                                size={23}
-                                color={"#efefef"}
-                            />
-                        </TouchableOpacity>
-                        <Text style={styles.menuText}>{items.title}</Text>
-                    </View>
-                ))}
+                {menu.map(
+                    (item, index) =>
+                        showMenu(item.device) && (
+                            <View key={index} style={styles.buttonContainer}>
+                                <TouchableOpacity
+                                    onPress={() => accion(item.nav)}
+                                    style={[
+                                        styles.button,
+                                        {
+                                            backgroundColor: item.customColor
+                                                ? item.customColor
+                                                : "#0470dc",
+                                        },
+                                    ]}
+                                >
+                                    <FontAwesome
+                                        name={item.logo}
+                                        size={23}
+                                        color={"#efefef"}
+                                    />
+                                </TouchableOpacity>
+                                <Text style={styles.menuText}>
+                                    {item.title}
+                                </Text>
+                            </View>
+                        )
+                )}
             </View>
         </View>
     );
@@ -82,6 +93,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         flexDirection: "row",
         justifyContent: "space-between",
+        backgroundColor: "#fff",
+        // flex: 1,
     },
     buttonContainer: {
         alignItems: "center",

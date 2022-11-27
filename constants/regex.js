@@ -5,4 +5,5 @@ export default {
     NUM_CONTACT: /^[0-9]{8,50}$/,
     FULL_NAME: /^[a-zA-Z]{2,50}$/,
     UNIT: /^[a-zA-Z0-9]{1,6}$/,
+    DATE: "\\d{4}-[01]\\d-[0-3]\\d",
 };

@@ -4,11 +4,14 @@ import * as ImagePicker from "expo-image-picker";
 import { AppContext } from "../../context/context";
 import { CustomButton } from "../CustomButton";
 import { createGuestService } from "../../services/guestService";
+import errors from "../../constants/errors";
+import { useNavigation } from "@react-navigation/native";
 
 export const GuestForm = ({ getData, validateInputs }) => {
     const { currentUser } = useContext(AppContext);
     const [image, setImage] = useState("");
     const [gError, setGError] = useState("");
+    const nav = useNavigation();
 
     const uploadImage = async () => {
         let image = await ImagePicker.launchImageLibraryAsync({
@@ -40,10 +43,13 @@ export const GuestForm = ({ getData, validateInputs }) => {
                 "🚀 ~ file: GuestForm.js ~ line 42 ~ sendForm ~ resCreation",
                 resCreation
             );
+            if (resCreation.status === 400) {
+                setGError(errors.GUEST_EXISTS);
+            } else {
+                nav.navigate("Home");
+            }
         } else {
-            setGError(
-                "Verifique que todos los campos esten completos y la imagen se cargara correctamente."
-            );
+            setGError(errors.FORM_ERROR);
         }
     };
     return (
@@ -54,32 +60,45 @@ export const GuestForm = ({ getData, validateInputs }) => {
                     text={"Seleccione foto del documento"}
                 />
                 {image && (
-                    <Image
-                        source={{ uri: image.uri }}
-                        style={{ width: 200, height: 200 }}
-                    />
+                    <View style={styles.imageContainer}>
+                        <Image
+                            source={{ uri: image.uri }}
+                            style={{
+                                width: 200,
+                                height: 200,
+                            }}
+                        />
+                    </View>
                 )}
                 <CustomButton onPress={sendForm} text={"Enviar"} />
-                {gError && <Text>{gError}</Text>}
+                {gError && (
+                    <View style={styles.errorContainer}>
+                        <Text style={styles.error}>{gError}</Text>
+                    </View>
+                )}
             </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "white",
+    },
+    imageContainer: {
+        alignItems: "center",
+    },
     buttonsText: {
         color: "#ffffff",
         fontSize: 20,
+        backgroundColor: "#fff",
     },
-    button: {
-        width: 350,
-        height: 60,
-        borderRadius: 15,
+    errorContainer: {
         alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#0470dc",
-        borderColor: "#ffffff",
-        borderWidth: 2,
-        marginTop: 20,
+    },
+    error: {
+        color: "#ff0000",
+        fontSize: 10,
     },
 });

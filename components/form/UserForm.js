@@ -1,11 +1,12 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useContext, useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import errors from "../../constants/errors";
 import fireBaseErrors from "../../constants/fireBaseErrors";
 import regex from "../../constants/regex";
 import { AppContext } from "../../context/context";
 import { auth } from "../../libs/auth";
+import { addUserService } from "../../services/userService";
 import { CustomButton } from "../CustomButton";
 import CustomDropdown from "../CustomDropdown";
 import { CustomInput } from "./CustomInput";
@@ -16,7 +17,7 @@ const ROLES = [
     { value: "Propietario" },
 ];
 
-export const UserForm = ({ getData, validateInputs }) => {
+export const UserForm = ({ getData, validateInputs, navigation }) => {
     const { currentUser } = useContext(AppContext);
     const [role, setRole] = useState("none");
     const [unit, setUnit] = useState("1A");
@@ -26,13 +27,12 @@ export const UserForm = ({ getData, validateInputs }) => {
     const [networkError, setNetworkError] = useState("");
 
     const handleCreateUser = () => {
+        setNetworkError("");
         if (validateInputs() && validation()) {
             setError({});
             const data = getData();
             createUserWithEmailAndPassword(auth, mailContact, "contraseña")
-                .then(({ user }) => {
-                    console.log("Usuario creado!");
-
+                .then(async ({ user }) => {
                     const newUser = {
                         name: data.name,
                         lastName: data.lastName,
@@ -41,25 +41,17 @@ export const UserForm = ({ getData, validateInputs }) => {
                         mail: mailContact,
                         phone: numContact,
                         role: role,
+                        uid: user.uid,
                     };
-
-                    addUserService(newUser, currentUser.token);
-                    const request = createRequest(
-                        user.stsTokenManager.accessToken,
-                        "POST",
-                        body
+                    const response = await addUserService(
+                        newUser,
+                        currentUser.token
                     );
-                    const url = createUrl("signin");
-
-                    fetch(url, request)
-                        .then((response) => response.json())
-                        .then((json) => {
-                            setNetworkError({});
-                        })
-                        .catch((error) => {
-                            console.error(error);
-                            throw error;
-                        });
+                    if (response?.status === 400) {
+                        setNetworkError(errors.SV_EXISTS_ID);
+                    } else {
+                        navigation.navigate("Home");
+                    }
                 })
                 .catch((error) => {
                     validateNetworkError(error);
@@ -161,5 +153,6 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#fff",
     },
 });
