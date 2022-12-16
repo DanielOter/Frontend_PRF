@@ -69,26 +69,30 @@ function Login() {
 
     return (
         <View style={styles.container}>
-            <CustomInput
-                value={email}
-                setValue={setEmail}
-                holder={"Ingresar email"}
-                text={"Email"}
-                error={error.emailError}
-            />
-            <CustomInput
-                value={password}
-                setValue={setPassword}
-                holder={"Ingresar Password"}
-                text={"Password"}
-                error={error.passwordError}
-            />
-            <CustomButton onPress={handleLogIn} text={"Login"} />
-            <View>
-                <Text style={styles.error}>
-                    {networkError.emailOrPasswordInvalidError ||
-                        networkError.networkError}{" "}
-                </Text>
+            <View style={styles.formContainer}>
+                <Text style={styles.title}>Custodian</Text>
+                <CustomInput
+                    value={email}
+                    setValue={setEmail}
+                    holder={"Email"}
+                    text={"Email"}
+                    error={error.emailError}
+                />
+                <CustomInput
+                    value={password}
+                    setValue={setPassword}
+                    holder={"Password"}
+                    text={"Password"}
+                    error={error.passwordError}
+                    isPass={true}
+                />
+                <CustomButton onPress={handleLogIn} text={"Login"} />
+                <View>
+                    <Text style={styles.error}>
+                        {networkError.emailOrPasswordInvalidError ||
+                            networkError.networkError}{" "}
+                    </Text>
+                </View>
             </View>
         </View>
     );
@@ -99,11 +103,24 @@ export default Login;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#fff",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
         alignItems: "center",
-        flex: 1,
+    },
+    formContainer: {
+        alignItems: "center",
+        borderRadius: 15,
+        borderWidth: 1,
+        width: "30%"
     },
     error: {
         color: "#ff0000",
         fontSize: 10,
     },
+    title: {
+        fontSize: 30,
+        fontWeight: "bold",
+        padding: "20px",
+    }
 });

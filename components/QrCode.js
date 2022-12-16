@@ -38,7 +38,7 @@ export const QrCode = ({ data }) => {
                     MediaLibrary.saveToLibraryAsync(uri).then(() => {
                         setQRref(undefined);
                     });
-                    alert("Took screenshot");
+                    alert("Se guardo el Qr en la galeria");
                 } else {
                     shareAsync(uri).then(() => {
                         setQRref(undefined);

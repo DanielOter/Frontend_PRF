@@ -10,13 +10,12 @@ import menuOptions from "../constants/menuOptions";
 import * as Device from "expo-device";
 
 const MenuButtons = ({ navigation }) => {
-    const { setLoading, currentUser } = useContext(AppContext);
+    const { setLoading, currentUser, setAlarm } = useContext(AppContext);
     const [menu, setMenu] = useState([]);
 
     useEffect(() => {
         if (currentUser) {
-            // const role = currentUser.role;
-            const role = "Propietario";
+            const role = currentUser.role;
             if (role === "Administrador") setMenu(menuOptions.Administrador);
             if (role === "Seguridad") setMenu(menuOptions.Seguridad);
             if (role === "Propietario") setMenu(menuOptions.Propietario);
@@ -43,6 +42,9 @@ const MenuButtons = ({ navigation }) => {
     const accion = (nav) => {
         if (nav === "LogOut") {
             handleSignOut();
+        } else if (nav === "alarm") {
+            setAlarm(true);
+            navigation.navigate("Map");
         } else {
             navigation.navigate(nav);
         }

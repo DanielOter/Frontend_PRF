@@ -19,7 +19,7 @@ const ROLES = [
 
 export const UserForm = ({ getData, validateInputs, navigation }) => {
     const { currentUser } = useContext(AppContext);
-    const [role, setRole] = useState("none");
+    const [role, setRole] = useState("");
     const [unit, setUnit] = useState("1A");
     const [numContact, setNumContact] = useState("12345678"); // 50
     const [mailContact, setMailContact] = useState("dsadas@dasd.com"); // 50

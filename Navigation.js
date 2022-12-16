@@ -45,14 +45,15 @@ function Navigation() {
                             name="Lector QR"
                             component={QrScanner}
                         />
-                        <Stack.Screen name="Mapa" component={MapScreen} />
+                        <Stack.Screen name="Map" component={MapScreen} />
                     </Stack.Group>
                 ) : (
                     <Stack.Group>
                         <Stack.Screen
                             name="Login"
                             component={Login}
-                            options={{ headerLeft: null, title: "Login" }}
+                            options={{ headerShown: false }}
+                            
                         />
                     </Stack.Group>
                 )}

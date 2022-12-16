@@ -3,14 +3,14 @@ export default {
         {
             logo: "child",
             title: "Boton de Panico",
-            nav: "Mapa",
+            nav: "alarm",
             customColor: "#ff0000",
             device: "Android"
         },
         {
             logo: "globe",
             title: "Ver mapa",
-            nav: "Mapa",
+            nav: "Map",
             device: "Android"
         },
         {
@@ -32,12 +32,6 @@ export default {
             nav: "LogOut",
             device: "ALL"
         },
-        {
-            logo: "qrcode",
-            title: "Lector QR",
-            nav: "Lector QR",
-            device: "Android"
-        },
     ],
     Seguridad: [
         {
@@ -49,7 +43,7 @@ export default {
         {
             logo: "address-book",
             title: "Agregar invitado",
-            nav: "CreateGuest",
+            nav: "Agregar Invitado",
             device: "ALL"
         },
         {

@@ -7,6 +7,7 @@ export const AppContext = createContext({});
 export const AppContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(undefined);
     const [loading, setLoading] = useState(true);
+    const [alarm, setAlarm] = useState(false);
 
     useEffect(() => {
         let isUp = true;
@@ -30,6 +31,8 @@ export const AppContextProvider = ({ children }) => {
     const value = {
         currentUser,
         setLoading,
+        setAlarm,
+        alarm,
     };
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
