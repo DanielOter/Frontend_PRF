@@ -1,17 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
-export const CustomInput = ({ value, setValue, holder, text, error }) => {
+export const CustomInput = ({ value, setValue, holder, text, error, isPass }) => {
     return (
         <View>
             <View>
-                <Text style={styles.text}>{text}</Text>
-                <View>
+                {/* <Text style={styles.text}>{text}</Text> */}
+                <View style={styles.inputContainer}>
                     <TextInput
                         value={value}
                         placeholder={holder}
                         onChangeText={(text) => setValue(text)}
                         style={styles.textInput}
+                        secureTextEntry={isPass}
                     />
                 </View>
             </View>
@@ -44,5 +45,9 @@ const styles = StyleSheet.create({
     error: {
         color: "#ff0000",
         fontSize: 10,
+    },
+    inputContainer: {
+        paddingBottom: 20,
+        paddingTop: 20,
     },
 });

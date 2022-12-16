@@ -27,7 +27,7 @@ export const AddGuestReg = () => {
     const abortController = new AbortController();
 
     useEffect(() => {
-        const getList = async () => {
+        (async () => {
             await getAllGuestService(currentUser.token).then((guests) => {
                 setguestList(
                     guests.map((g) => {
@@ -38,8 +38,7 @@ export const AddGuestReg = () => {
                     })
                 );
             });
-        };
-        getList();
+        })();
         return () => abortController.abort();
     }, []);
 
@@ -55,7 +54,10 @@ export const AddGuestReg = () => {
                 data,
                 currentUser.token
             );
-            console.log("🚀 ~ file: AddGuestReg.js ~ line 58 ~ sendNewReg ~ response", response)
+            console.log(
+                "🚀 ~ file: AddGuestReg.js ~ line 58 ~ sendNewReg ~ response",
+                response
+            );
             const entry = response.reg_entryTime.split("T")[0];
             const exit = response.reg_exitTime.split("T")[0];
             setQrInfo({

@@ -1,18 +1,20 @@
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, ProviderTypes } from "react-native-maps";
 import { StyleSheet, View, Dimensions } from "react-native";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as Location from "expo-location";
+import {
+    createAlertService,
+    getAllAlerts,
+    turnOffAlert,
+} from "../services/alertService";
+import { AppContext } from "../context/context";
 
 function MapScreen() {
-    const m = [
-        {
-            id: 1,
-            latitude: -34.58451,
-            longitude: -58.416899,
-        },
-    ];
-
-    const [location, setLocation] = useState(null);
+    const [markers, setMarkers] = useState([]);
+    const [location, setLocation] = useState();
+    const { alarm, currentUser, setAlarm } = useContext(AppContext);
+    const abortController = new AbortController();
+    const [intervalId, setInvervalId] = useState(0);
 
     useEffect(() => {
         (async () => {
@@ -22,13 +24,60 @@ function MapScreen() {
                 return;
             }
 
-            let location = await Location.getCurrentPositionAsync({});
-            setLocation(location);
+            let local = await Location.getCurrentPositionAsync({});
+            setLocation(local);
+
+            if (alarm) {
+                const data = {
+                    email: currentUser.email,
+                    latitude: local.coords.latitude,
+                    longitude: local.coords.longitude,
+                };
+                await createAlertService(data, currentUser.token);
+                setAlarm(false);
+            }
+
+            if ("Seguridad" === "Seguridad") {
+                const countId = setInterval(() => {
+                    getAlerts();
+                }, 10000);
+                setInvervalId(countId);
+            }
         })();
+        return () => abortController.abort();
     }, []);
 
+    const getAlerts = async () => {
+        const response = await getAllAlerts(currentUser.token);
+        const marks = response.map((marker) => {
+            return {
+                id: marker.alert_id,
+                latitude: marker.alert_latitud,
+                longitude: marker.alert_longitud,
+            };
+        });
+        setMarkers(marks);
+    };
+
+    useEffect(() => {
+        return () => clearInterval(intervalId);
+    }, [intervalId]);
+
+    const removeMarker = async (id) => {
+        setMarkers((current) =>
+            current.filter((markers) => {
+                return markers.id !== id;
+            })
+        );
+        const response = await turnOffAlert(id);
+        console.log(
+            "🚀 ~ file: MapScreen.js ~ line 73 ~ removeMarker ~ response",
+            response
+        );
+    };
+
     return (
-        <View style={styles.container}>
+        <View>
             <MapView
                 style={styles.map}
                 initialRegion={{
@@ -39,8 +88,7 @@ function MapScreen() {
                 }}
                 showsUserLocation={true}
             >
-                {/*alertas*/}
-                {m.map((item, index) => (
+                {markers.map((item, index) => (
                     <Marker
                         key={index}
                         coordinate={{
@@ -49,7 +97,8 @@ function MapScreen() {
                         }}
                         title={item.title}
                         description={item.description}
-                        pinColor="red"
+                        pinColor={item.pincolor}
+                        onPress={() => removeMarker(item.id)}
                     />
                 ))}
             </MapView>

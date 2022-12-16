@@ -32,7 +32,8 @@ const logInService = async (email, token, load) => {
                 const userData = {
                     email: email,
                     token: token,
-                    role: json.role,
+                    role: json.usr_rolId,
+                    alarm: false,
                 };
                 console.log("Signed in!");
                 storeData(keys.USER, JSON.stringify(userData));
