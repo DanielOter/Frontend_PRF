@@ -3,7 +3,12 @@ import { Text, View, StyleSheet } from "react-native";
 const Header = ({ header }) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>{header}</Text>
+        <View>
+                <Text style={styles.heading}>{header}</Text>
+        </View>
+        <View>
+                <Image style={{height:40, width:50}} source={require('./assets/onlyLogo.png')} />
+        </View>
         </View>
     );
 };
@@ -16,13 +21,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingVertical: 20,
         paddingHorizontal: 10,
-        borderBottomColor: "#1f1f1f",
+        borderBottomColor: "#b48a4d",
         borderBottomWidth: 2,
         paddingTop: 20,
-        backgroundColor: "#fff",
+        backgroundColor: "#fcfdf5",
+        flexDirection: "row"
     },
     heading: {
-        color: "#000000",
+        color: "#b48a4d",
         fontSize: 20,
         fontWeight: "700",
     },

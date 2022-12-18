@@ -84,7 +84,7 @@ export const GuestForm = ({ getData, validateInputs }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: "#fcfdf5",
     },
     imageContainer: {
         alignItems: "center",

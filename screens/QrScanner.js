@@ -73,7 +73,7 @@ export const QrScanner = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: "#fcfdf5",
         alignItems: "center",
         justifyContent: "center",
     },

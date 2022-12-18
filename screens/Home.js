@@ -35,7 +35,7 @@ export default Home;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#fff",
+        backgroundColor: "#fcfdf5",
         height: "100vh",
     },
 });

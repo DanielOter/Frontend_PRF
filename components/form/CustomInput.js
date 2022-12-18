@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         paddingLeft: 14,
         width: 350,
         minHeight: 50,
+        borderColor: "#b48a4d"
     },
     error: {
         color: "#ff0000",

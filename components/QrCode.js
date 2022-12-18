@@ -98,7 +98,7 @@ export const QrCode = ({ data }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#fff",
+        backgroundColor: "#fcfdf5",
         alignItems: "center",
         flex: 1,
     },

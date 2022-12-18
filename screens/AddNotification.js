@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         fontSize: 10,
     },
     container: {
-        backgroundColor: "#fff",
+        backgroundColor: "#fcfdf5",
         height: "100vh",
         display: "flex",
         // justifyContent: "center",

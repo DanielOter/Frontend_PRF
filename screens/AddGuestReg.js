@@ -145,7 +145,7 @@ export const AddGuestReg = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#fff",
+        backgroundColor: "#fcfdf5",
         flex: 1,
         alignItems: "center",
     },
