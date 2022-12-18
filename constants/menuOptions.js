@@ -1,7 +1,7 @@
 export default {
     Propietario: [
         {
-            logo: "child",
+            logo: "user-police",
             title: "Boton de Panico",
             nav: "alarm",
             customColor: "#ff0000",
