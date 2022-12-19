@@ -1,34 +1,53 @@
-import { getData } from "../helpers/store";
 import { createRequest, createUrl } from "../helpers/request";
 import keys from "../constants/keys";
+import { storeData } from "../helpers/store";
 
 const addUserService = async (data, token) => {
     try {
         const body = { newUser: data };
         const request = createRequest(token, "POST", body);
         const url = createUrl("user/create");
-
-        const response = await fetch(url, request);
-
-        const result = await response.json();
-
-        return result;
+        const response = await fetch(url, request)
+            .then((response) => response.json())
+            .then((res) => {
+                return res;
+            })
+            .catch((error) => {
+                console.log(error);
+                throw error;
+            });
+        return response;
     } catch (error) {
         throw error;
     }
 };
 
-const deleteFriend = async (emailFriend) => {
+const logInService = async (email, token, load) => {
     try {
-        const currentUser = await getData(keys.USER);
-        const userData = JSON.parse(currentUser);
-        const body = { emailFriend };
-        const request = createRequest(userData.accessToken, "DELETE", body);
-        const url = createUrl("friend");
-        const response = await fetch(url, request);
-        await response.json();
+        const request = createRequest(token, "GET");
+        const url = createUrl("user/email/" + email);
+        const response = await fetch(url, request)
+            .then((response) => response.json())
+            .then((json) => {
+                const userData = {
+                    email: email,
+                    token: token,
+                    role: json.usr_rolId,
+                    alarm: false,
+                };
+                console.log("Signed in!");
+                storeData(keys.USER, JSON.stringify(userData));
+                load(true);
+                return json;
+            })
+            .catch((error) => {
+                console.log(error);
+                throw error;
+            });
+        return response;
     } catch (error) {
         throw error;
     }
 };
-export { addFriendService, deleteFriend };
+
+export { addUserService, logInService };

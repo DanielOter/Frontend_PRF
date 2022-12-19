@@ -1,8 +1,8 @@
-import { LOCAL_URL } from "@env";
+// import { LOCAL_URL } from "@env";
+const LOCAL_URL = "http://192.168.0.4:8081/api/";
 
 const createUrl = (path) => {
-    const enviormentUrl = LOCAL_URL;
-    return enviormentUrl.concat(path);
+    return LOCAL_URL.concat(path);
 };
 
 const createHeader = (token) => {
