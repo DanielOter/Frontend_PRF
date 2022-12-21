@@ -4,7 +4,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { removeData } from "../helpers/store";
 import keys from "../constants/keys";
 import { auth } from "../libs/auth";
-import { signOut } from "firebase/auth";
+import { signOut, updateCurrentUser } from "firebase/auth";
 import { AppContext } from "../context/context";
 import menuOptions from "../constants/menuOptions";
 import * as Device from "expo-device";
@@ -64,7 +64,7 @@ const MenuButtons = ({ navigation }) => {
                                         {
                                             backgroundColor: item.customColor
                                                 ? item.customColor
-                                                : "#0470dc",
+                                                : styles.button.backgroundColor,
                                         },
                                     ]}
                                 >
@@ -91,12 +91,11 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 25,
         paddingBottom: 10,
-        borderBottomColor: "#1f1f1f",
-        borderBottomWidth: 1,
+        borderBottomColor: "#b48a4d",
+        borderBottomWidth: 2,
         flexDirection: "row",
         justifyContent: "space-between",
-        backgroundColor: "#fff",
-        // flex: 1,
+        backgroundColor: "#fcfdf5",
     },
     buttonContainer: {
         alignItems: "center",
@@ -108,10 +107,10 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#0470dc",
+        backgroundColor: "#b48a4d",
     },
     menuText: {
-        color: "#858585",
+        color: "#ff",
         fontSize: 12,
         paddingTop: 10,
         fontWeight: "600",

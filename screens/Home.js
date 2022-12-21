@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { View, StyleSheet, SafeAreaView, Text, Platform } from "react-native";
+import { useContext, useEffect, useState } from "react";
+import { View, StyleSheet, Platform, LogBox } from "react-native";
 import Header from "../components/Header";
 import MenuButtons from "../components/MenuButtons";
 import { NotificationList } from "../components/NotificationList";
@@ -8,11 +8,15 @@ import MapScreen from "./MapScreen";
 const HEADER = "Custodian";
 
 function Home({ navigation }) {
-    // const user = userAuth();
     const { currentUser } = useContext(AppContext);
+
     const isMobile = () => {
         return Platform.OS === "android";
     };
+
+    useEffect(() => {
+        LogBox.ignoreLogs(["AsyncStorage has been extracted"]);
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -23,7 +27,7 @@ function Home({ navigation }) {
                     <MapScreen />
                 </View>
             ) : (
-                <View>
+                <View style={{ flex: 1 }}>
                     <NotificationList />
                 </View>
             )}
@@ -35,7 +39,7 @@ export default Home;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#fff",
-        height: "100vh",
+        backgroundColor: "#fcfdf5",
+        height: "100%",
     },
 });

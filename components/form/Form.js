@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, ScrollView } from "react-native";
 import regex from "../../constants/regex";
 import errors from "../../constants/errors";
 import { GuestForm } from "./GuestForm";
@@ -63,7 +63,7 @@ export const Form = ({ tForm, navigation }) => {
     };
 
     return (
-        <View >
+        <View>
             <ScrollView>
                 <Header header={tForm + " form"}></Header>
                 <View style={styles.container}>
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#fff",
+        backgroundColor: "#fcfdf5",
         flex: 1,
     },
 });

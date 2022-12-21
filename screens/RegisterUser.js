@@ -14,7 +14,7 @@ export const RegisterUser = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#fff",
-        height: "100vh",
+        backgroundColor: "#fcfdf5",
+        height: "100%",
     },
 });

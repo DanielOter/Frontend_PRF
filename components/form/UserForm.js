@@ -31,7 +31,7 @@ export const UserForm = ({ getData, validateInputs, navigation }) => {
         if (validateInputs() && validation()) {
             setError({});
             const data = getData();
-            createUserWithEmailAndPassword(auth, mailContact, "contraseña")
+            createUserWithEmailAndPassword(auth, mailContact, "Contraseña")
                 .then(async ({ user }) => {
                     const newUser = {
                         name: data.name,
@@ -134,11 +134,9 @@ export const UserForm = ({ getData, validateInputs, navigation }) => {
                     value={role}
                     error={error.vRole}
                 />
-                {networkError && (
-                    <View style={{ alignItems: "center" }}>
-                        <Text style={styles.error}>{networkError}</Text>
-                    </View>
-                )}
+                <View style={{ alignItems: "center" }}>
+                    <Text style={styles.error}>{networkError}</Text>
+                </View>
                 <CustomButton onPress={handleCreateUser} text={"Registrar"} />
             </View>
         </View>
@@ -153,6 +151,6 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#fff",
+        backgroundColor: "#b48a4d",
     },
 });

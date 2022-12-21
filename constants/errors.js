@@ -7,6 +7,7 @@ export default {
     L_NAME: "Error en el ingreso del 'Apellido'",
     ID_TYPE: "Error en el ingreso del 'Tipo de Documento'",
     ID_NUM: "Error en el ingreso del 'Numero de Documento'",
+    PASS: "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. NO puede tener otros símbolos.",
     //UserForm
     UNIT: "Error en el ingreso de la 'Unidad'",
     ROLE: "No se ha seleccionado ningún rol",

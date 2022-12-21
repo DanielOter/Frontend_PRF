@@ -31,30 +31,13 @@ export const AddNotification = () => {
                     "Hubo un error durante la creacion, intente de nuevo"
                 );
             } else {
-                nav.navigate("Home");
+                nav.navigate("Home", {
+                    load: true,
+                });
             }
         }
     };
     const validation = () => {
-        // let vRole = "";
-        // let vUnit = "";
-        // let vNumContact = "";
-        // let vMail = "";
-        // let correctInfo = true;
-
-        // if (role == "none") {
-        //     vRole = errors.ROLE;
-        //     correctInfo = false;
-        // }
-
-        // if (correctInfo == false) {
-        //     setError({
-        //         vRole,
-        //         vUnit,
-        //         vNumContact,
-        //         vMail,
-        //     });
-        // }
         return true;
     };
 
@@ -74,11 +57,9 @@ export const AddNotification = () => {
                 text={"descripcion"}
                 error={error.vUnit}
             />
-            {networkError && (
-                <View style={{ alignItems: "center" }}>
-                    <Text style={styles.error}>{networkError}</Text>
-                </View>
-            )}
+            <View style={{ alignItems: "center" }}>
+                <Text style={styles.error}>{networkError}</Text>
+            </View>
             <CustomButton onPress={handleCreateNot} text={"Enviar"} />
         </View>
     );
@@ -90,10 +71,9 @@ const styles = StyleSheet.create({
         fontSize: 10,
     },
     container: {
-        backgroundColor: "#fff",
-        height: "100vh",
+        backgroundColor: "#fcfdf5",
+        height: "100%",
         display: "flex",
-        // justifyContent: "center",
         alignItems: "center",
     },
 });

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import errors from "../constants/errors";
 import fireErrors from "../constants/fireBaseErrors";
@@ -11,7 +11,7 @@ import { CustomButton } from "../components/CustomButton";
 
 function Login() {
     const [email, setEmail] = useState("admin@admin.com");
-    const [password, setPassword] = useState("contraseña");
+    const [password, setPassword] = useState("Contrasena2");
     const [error, setError] = useState({});
     const [networkError, setNetworkError] = useState({});
     const { setLoading } = useContext(AppContext);
@@ -70,7 +70,10 @@ function Login() {
     return (
         <View style={styles.container}>
             <View style={styles.formContainer}>
-                <Text style={styles.title}>Custodian</Text>
+                <Image
+                    style={{ height: 160, width: 250 }}
+                    source={require("../assets/titledLogo.png")}
+                />
                 <CustomInput
                     value={email}
                     setValue={setEmail}
@@ -103,7 +106,7 @@ export default Login;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#fff",
-        height: "100vh",
+        height: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -111,8 +114,10 @@ const styles = StyleSheet.create({
     formContainer: {
         alignItems: "center",
         borderRadius: 15,
-        borderWidth: 1,
-        width: "30%"
+        borderWidth: 2,
+        width: 380,
+        borderColor: "#b48a4d",
+        backgroundColor: "#fcfdf5",
     },
     error: {
         color: "#ff0000",
@@ -120,7 +125,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 30,
-        fontWeight: "bold",
+        fontWeight: 500,
         padding: "20px",
-    }
+        color: "#b48a4d",
+    },
 });

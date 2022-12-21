@@ -71,11 +71,9 @@ export const GuestForm = ({ getData, validateInputs }) => {
                     </View>
                 )}
                 <CustomButton onPress={sendForm} text={"Enviar"} />
-                {gError && (
-                    <View style={styles.errorContainer}>
-                        <Text style={styles.error}>{gError}</Text>
-                    </View>
-                )}
+                <View style={styles.errorContainer}>
+                    <Text style={styles.error}>{gError}</Text>
+                </View>
             </View>
         </View>
     );
@@ -84,7 +82,7 @@ export const GuestForm = ({ getData, validateInputs }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: "#fcfdf5",
     },
     imageContainer: {
         alignItems: "center",
