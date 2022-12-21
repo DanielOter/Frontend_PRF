@@ -6,4 +6,5 @@ export default {
     FULL_NAME: /^[a-zA-Z]{2,50}$/,
     UNIT: /^[a-zA-Z0-9]{1,6}$/,
     DATE: "\\d{4}-[01]\\d-[0-3]\\d",
+    PASS: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/
 };

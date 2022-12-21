@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderBottomColor: "#b48a4d",
         borderBottomWidth: 2,
-        paddingTop: 20,
+        paddingTop: 50,
         backgroundColor: "#fcfdf5",
         flexDirection: "row",
     },
     heading: {
         color: "#b48a4d",
         fontSize: 20,
-        fontWeight: "700",
+        fontWeight: "bold",
     },
 });

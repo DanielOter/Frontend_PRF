@@ -95,8 +95,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         flexDirection: "row",
         justifyContent: "space-between",
-        backgroundColor: "#fcfdf5"
-
+        backgroundColor: "#fcfdf5",
     },
     buttonContainer: {
         alignItems: "center",
@@ -108,8 +107,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#b48a4d"
-
+        backgroundColor: "#b48a4d",
     },
     menuText: {
         color: "#ff",

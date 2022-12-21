@@ -5,32 +5,37 @@ export default {
             title: "Boton de Panico",
             nav: "alarm",
             customColor: "#ff0000",
-            device: "Android"
+            device: "Android",
         },
         {
             logo: "globe",
             title: "Ver mapa",
             nav: "Map",
-            device: "Android"
+            device: "Android",
         },
         {
             logo: "address-book",
             title: "Agregar invitado",
             nav: "Agregar Invitado",
-            device: "ALL"
-
+            device: "ALL",
         },
         {
             logo: "group",
             title: "Agregar registro invitado",
             nav: "Agregar Registro",
-            device: "ALL"
+            device: "ALL",
+        },
+        {
+            logo: "key",
+            title: "Cambiar Contraseña",
+            nav: "changePass",
+            device: "ALL",
         },
         {
             logo: "sign-out",
             title: "Desconectar",
             nav: "LogOut",
-            device: "ALL"
+            device: "ALL",
         },
     ],
     Seguridad: [
@@ -38,39 +43,51 @@ export default {
             logo: "qrcode",
             title: "Lector QR",
             nav: "Lector QR",
-            device: "Android"
+            device: "Android",
         },
         {
             logo: "address-book",
             title: "Agregar invitado",
             nav: "Agregar Invitado",
-            device: "ALL"
+            device: "ALL",
+        },
+        {
+            logo: "key",
+            title: "Cambiar Contraseña",
+            nav: "changePass",
+            device: "ALL",
         },
         {
             logo: "sign-out",
             title: "Desconectar",
             nav: "LogOut",
-            device: "ALL"
+            device: "ALL",
         },
     ],
     Administrador: [
         {
             logo: "users",
             title: "Administrar Usuarios",
-            nav: "Administra Usuarios",
-            device: "ALL"
+            nav: "Administrar Usuarios",
+            device: "ALL",
         },
         {
             logo: "bell",
             title: "Cargar notificación",
             nav: "Cargar Notificaciones",
-            device: "ALL"
+            device: "ALL",
+        },
+        {
+            logo: "key",
+            title: "Cambiar Contraseña",
+            nav: "changePass",
+            device: "ALL",
         },
         {
             logo: "sign-out",
             title: "Desconectar",
             nav: "LogOut",
-            device: "ALL"
+            device: "ALL",
         },
     ],
 };

@@ -71,11 +71,9 @@ export const GuestForm = ({ getData, validateInputs }) => {
                     </View>
                 )}
                 <CustomButton onPress={sendForm} text={"Enviar"} />
-                {gError && (
-                    <View style={styles.errorContainer}>
-                        <Text style={styles.error}>{gError}</Text>
-                    </View>
-                )}
+                <View style={styles.errorContainer}>
+                    <Text style={styles.error}>{gError}</Text>
+                </View>
             </View>
         </View>
     );

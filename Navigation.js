@@ -10,6 +10,7 @@ import { RegisterUser } from "./screens/RegisterUser";
 import MapScreen from "./screens/MapScreen";
 import { AddNotification } from "./screens/AddNotification";
 import { QrScanner } from "./screens/QrScanner";
+import ChangePass from "./components/user/ChangePass";
 
 function Navigation() {
     const Stack = createStackNavigator();
@@ -34,18 +35,20 @@ function Navigation() {
                             component={AddGuestReg}
                         />
                         <Stack.Screen
-                            name="Administra Usuarios"
+                            name="Administrar Usuarios"
                             component={RegisterUser}
                         />
                         <Stack.Screen
                             name="Cargar Notificaciones"
                             component={AddNotification}
                         />
-                        <Stack.Screen
-                            name="Lector QR"
-                            component={QrScanner}
-                        />
+                        <Stack.Screen name="Lector QR" component={QrScanner} />
                         <Stack.Screen name="Map" component={MapScreen} />
+                        <Stack.Screen
+                            name="changePass"
+                            component={ChangePass}
+                            options={{ headerShown: false }}
+                        />
                     </Stack.Group>
                 ) : (
                     <Stack.Group>
@@ -53,7 +56,6 @@ function Navigation() {
                             name="Login"
                             component={Login}
                             options={{ headerShown: false }}
-                            
                         />
                     </Stack.Group>
                 )}
