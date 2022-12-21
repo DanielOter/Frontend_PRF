@@ -1,4 +1,3 @@
-// import { LOCAL_URL } from "@env";
 const LOCAL_URL = "http://192.168.0.3:8081/api/";
 
 const createUrl = (path) => {
